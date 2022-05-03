@@ -24,13 +24,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(model)
-//        updateIntDisplay()
-//        updateStringDisplay()
+
         updateFromModel()
-//        presentSwiftUIView()
+
         addSwiftUIView()
+        
+        setupBindings()
+        
     }
     
+    
+    private func setupBindings() {
+        model.$myInteger
+            .sink { [weak self] in
+                guard let self = self else { return }
+                self.integerChangedInModel($0)
+            }
+            .store(in: &model.listeners)
+    }
+
+    @objc func close() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+
+    
+
+    private func integerChangedInModel (_ value: Int) {
+        print("yeah")
+        print(value)
+    }
+
 
     
     func addSwiftUIView() {
@@ -46,19 +69,7 @@ class ViewController: UIViewController {
         /// Add the SwiftUI view to the view controller view hierarchy.
         view.addSubview(hostingController.view)
 
-//        /// Setup the constraints to update the SwiftUI view boundaries.
-//        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-//        let constraints = [
-//            hostingController.view.topAnchor.constraint(equalTo: view.topAnchor),
-//            hostingController.view.leftAnchor.constraint(equalTo: view.leftAnchor),
-//            view.bottomAnchor.constraint(equalTo: hostingController.view.bottomAnchor),
-//            view.rightAnchor.constraint(equalTo: hostingController.view.rightAnchor)
-//        ]
-//
-//        NSLayoutConstraint.activate(constraints)
-//
-//        /// Notify the hosting controller that it has been moved to the current view controller.
-//        hostingController.didMove(toParent: self)
+
     }
     
     

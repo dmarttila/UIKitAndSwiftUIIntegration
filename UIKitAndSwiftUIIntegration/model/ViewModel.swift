@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class ViewModel: ObservableObject {
     
@@ -14,6 +15,8 @@ class ViewModel: ObservableObject {
     
     @Published private(set) var privateSetInt: Int
     @Published private(set) var privateSetString : String
+    
+    var listeners: Set<AnyCancellable> = []
     
     init (myInteger: Int, myString: String) {
         self.myInteger = myInteger
