@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class ViewController: UIViewController {
 
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
         
     }
     
+    private var switchSubscriber: AnyCancellable?
     
     private func setupBindings() {
         model.$myInteger
@@ -41,11 +43,36 @@ class ViewController: UIViewController {
                 self.integerChangedInModel($0)
             }
             .store(in: &model.listeners)
+        
+        switchSubscriber = model.$myString.sink{
+            print("Combine yo: \($0)")
+        }
+        
+        //switchSubscriber = model.$myString.sink(receiveValue: <#T##((String) -> Void)##((String) -> Void)##(String) -> Void#>)
+//                     .receive(on: DispatchQueue.main)
+//                     .assign(to: \.isEnabled, on: submitButton)
+//                     .assign(to: myIntLabel.text, on: self)
+//                     .assign(to: \.text, on: myIntLabel)
+        
+        
+//        let cancellable = publisher.sink(
+//            receiveCompletion: { completion in
+//                switch completion {
+//                case .failure(let error):
+//                    print(error)
+//                case .finished:
+//                    print("Success")
+//                }
+//            },
+//            receiveValue: { value in
+//                print(value)
+//            }
+//        )
     }
 
-    @objc func close() {
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
+//    @objc func close() {
+//        navigationController?.dismiss(animated: true, completion: nil)
+//    }
 
     
 
