@@ -45,6 +45,9 @@
                                         <rect key="frame" x="-2" y="94.5" width="378" height="31"/>
                                         <color key="tintColor" red="0.12549019610000001" green="0.18039215689999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" red="0.34509803919999998" green="0.42352941179999998" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="sliderChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="aRd-Rz-Jbq"/>
+                                        </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="83F-Kz-jK5">
                                         <rect key="frame" x="0.0" y="144.5" width="374" height="20.5"/>
@@ -74,6 +77,12 @@
                             <constraint firstItem="tu0-eS-E9d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="YXy-GM-S8J"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myButton" destination="zHq-W3-aZA" id="Xex-4k-1Ss"/>
+                        <outlet property="myIntLabel" destination="FmI-Xz-Rtk" id="Mm8-u3-9gh"/>
+                        <outlet property="myIntSlider" destination="EBl-5c-5dR" id="KDa-8k-BbN"/>
+                        <outlet property="myStringTextField" destination="zwu-W2-mbh" id="Nr7-EV-2Dp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
