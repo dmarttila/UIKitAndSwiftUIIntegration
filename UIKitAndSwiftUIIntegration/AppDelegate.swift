@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  UIKitAndSwiftUIIntegration
 //
-//  Created by Douglas Marttila on 5/3/22.
+//  Created by Doug Marttila on 5/3/22.
 //
 
 import UIKit

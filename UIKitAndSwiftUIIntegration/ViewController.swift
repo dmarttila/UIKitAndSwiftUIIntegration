@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  UIKitAndSwiftUIIntegration
 //
-//  Created by Douglas Marttila on 5/3/22.
+//  Created by Doug Marttila on 5/3/22.
 //
 
 import UIKit
@@ -49,9 +49,9 @@ class ViewController: UIViewController {
     private var stringSubscriber: AnyCancellable?
     private func setupBindings() {
         model.$myFloat
-            .sink { [weak self] flt in
+            .sink { [weak self] float in
                 guard let self = self else { return }
-                self.floatChangedInModel(flt)
+                self.floatChangedInModel(float)
                 
             }
             .store(in: &model.subscribers)
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             self.myTextField.text = $0
         }
     }
-        
+        //print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         //https://theswiftdev.com/the-ultimate-combine-framework-tutorial-in-swift/
         /*
          @IBOutlet weak var textLabel: UILabel!
