@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-eS-E9d">
-                                <rect key="frame" x="20" y="74" width="374" height="216"/>
+                                <rect key="frame" x="20" y="74" width="374" height="124.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="PDi-RD-cLq">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -34,14 +34,8 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Int" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyH-NL-31p">
-                                        <rect key="frame" x="0.0" y="54" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="EBl-5c-5dR">
-                                        <rect key="frame" x="-2" y="94.5" width="378" height="31"/>
+                                        <rect key="frame" x="-2" y="54" width="378" height="31"/>
                                         <color key="tintColor" red="0.12549019610000001" green="0.18039215689999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="thumbTintColor" red="0.34509803919999998" green="0.42352941179999998" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
@@ -49,7 +43,7 @@
                                         </connections>
                                     </slider>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="83F-Kz-jK5">
-                                        <rect key="frame" x="0.0" y="144.5" width="374" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="104" width="374" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Int" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmI-Xz-Rtk">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -59,12 +53,6 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHq-W3-aZA">
-                                        <rect key="frame" x="0.0" y="185" width="374" height="31"/>
-                                        <color key="tintColor" red="0.12549019610000001" green="0.18039215689999999" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Do Something"/>
-                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -77,7 +65,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="myButton" destination="zHq-W3-aZA" id="Xex-4k-1Ss"/>
                         <outlet property="myIntLabel" destination="FmI-Xz-Rtk" id="Mm8-u3-9gh"/>
                         <outlet property="myIntSlider" destination="EBl-5c-5dR" id="KDa-8k-BbN"/>
                         <outlet property="myStringTextField" destination="zwu-W2-mbh" id="Nr7-EV-2Dp"/>
