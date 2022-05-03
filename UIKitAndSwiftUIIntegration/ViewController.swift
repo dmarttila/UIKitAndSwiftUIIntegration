@@ -11,18 +11,26 @@ import Combine
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var myIntSlider: UISlider!
-    @IBOutlet weak var myIntLabel: UILabel!
-    @IBOutlet weak var myStringTextField: UITextField!
+    @IBOutlet weak var myFloatSlider: UISlider!
+    @IBOutlet weak var myFloatLabel: UILabel!
+    
+    @IBOutlet weak var myTextField: UITextField!
+    
     
     let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(model)
-        updateFromModel()
         addSwiftUIView()
         setupBindings()
+    }
+    
+    //TODO: get the text editing to update as it's edited
+    @IBAction func updateText(_ sender: Any) {
+        model.myString = myTextField.text ?? ""
+        print("ONG")
     }
     
     func addSwiftUIView() {
@@ -33,34 +41,29 @@ class ViewController: UIViewController {
         view.addSubview(hostingController.view)
     }
     
-    func updateFromModel () {
-        myStringTextField.text = model.myString
-        myIntLabel.text = String(model.myFloat)
-        myIntSlider.value = model.myFloat
-    }
+//    func updateFromModel () {
+//        myStringTextField.text = model.myString
+//        myFloatLabel.text = String(model.myFloat)
+//        myFloatSlider.value = model.myFloat
+//    }
     
-    func updateToModel () {
-        model.myString = myStringTextField.text ?? ""
-        model.myFloat = myIntSlider.value
-    }
+//    func updateToModel () {
+//        model.myString = myStringTextField.text ?? ""
+//        model.myFloat = myFloatSlider.value
+//    }
     
     @IBAction func sliderChange(_ sender: Any) {
-        updateToModel()
-        updateFromModel()
-    }
-    
-    @IBAction func myButtonTap(_ sender: Any) {
-       updateToModel()
-////        presentSwiftUIView()
-//        addSwiftUIView()
+//        updateToModel()
+        model.myFloat = myFloatSlider.value
+//        updateFromModel()
     }
     
     private var switchSubscriber: AnyCancellable?
     
     private func floatChangedInModel (_ value: Float) {
         //updateFromModel won't work!!!!
-        myIntLabel.text = String(value)
-        myIntSlider.value = value
+        myFloatLabel.text = String(value)
+        myFloatSlider.value = value
     }
     
     
@@ -76,7 +79,8 @@ class ViewController: UIViewController {
         switchSubscriber = model.$myString.sink{
 //            print("Combine yo: \($0)")
 //            updateFromModel()
-            self.myStringTextField.text = $0
+            self.myTextField.text = $0
+//            print($0)
         }
     }
         
