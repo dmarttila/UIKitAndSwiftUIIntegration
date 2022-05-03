@@ -10,23 +10,23 @@ import Combine
 
 class ViewModel: ObservableObject {
     
-    @Published var myInteger: Int
+    @Published var myFloat: Float
     @Published var myString: String
     
-    @Published private(set) var privateSetInt: Int
+    @Published private(set) var privateSetFloat: Float
     @Published private(set) var privateSetString : String
     
     var listeners: Set<AnyCancellable> = []
     
-    init (myInteger: Int, myString: String) {
-        self.myInteger = myInteger
+    init (myInteger: Float, myString: String) {
+        self.myFloat = myInteger
         self.myString = myString
-        privateSetInt = myInteger + 39
-        privateSetString = myString + " and also with you"
+        privateSetFloat = myInteger
+        privateSetString = myString
     }
     
-    func updatePrivateInt (int: Int) {
-        privateSetInt = int
+    func updatePrivateFloat (flt: Float) {
+        privateSetFloat = flt
     }
     func updatePrivateString (str: String) {
         privateSetString = str
@@ -35,9 +35,9 @@ class ViewModel: ObservableObject {
 
 extension ViewModel: CustomStringConvertible {
     var description: String {
-        var str = "myInteger: \(myInteger)\n"
+        var str = "myInteger: \(myFloat)\n"
         str += "myString: \(myString)\n"
-        str += "privateSetInt: \(privateSetInt)\n"
+        str += "privateSetInt: \(privateSetFloat)\n"
         str += "privateSetString: \(privateSetString)"
         return str
     }

@@ -25,11 +25,6 @@ class ViewController: UIViewController {
         setupBindings()
     }
     
-    private func integerChangedInModel (_ value: Int) {
-        print("yeah")
-        print(value)
-    }
-    
     func addSwiftUIView() {
         let swiftUIView = SwiftUIView(model: model)
         let hostingController = UIHostingController(rootView: swiftUIView)
@@ -40,18 +35,14 @@ class ViewController: UIViewController {
     
     func updateFromModel () {
         myStringTextField.text = model.myString
-        myIntLabel.text = String(model.myInteger)
-        myIntSlider.value = Float(model.myInteger)
+        myIntLabel.text = String(model.myFloat)
+        myIntSlider.value = model.myFloat
     }
     
     func updateToModel () {
-        let str = myStringTextField.text ?? ""
-        let int = Int(myIntSlider.value)
-        model.myString = str
-        model.myInteger = int
+        model.myString = myStringTextField.text ?? ""
+        model.myFloat = myIntSlider.value
     }
-    
-
     
     @IBAction func sliderChange(_ sender: Any) {
         updateToModel()
@@ -59,27 +50,33 @@ class ViewController: UIViewController {
     }
     
     @IBAction func myButtonTap(_ sender: Any) {
-        let str = myStringTextField.text ?? ""
-        let int = Int(myIntSlider.value)
-        model.myString = str
-        model.myInteger = int
-        print(model)
+       updateToModel()
 ////        presentSwiftUIView()
 //        addSwiftUIView()
     }
     
     private var switchSubscriber: AnyCancellable?
     
+    private func floatChangedInModel (_ value: Float) {
+        //updateFromModel won't work!!!!
+        myIntLabel.text = String(value)
+        myIntSlider.value = value
+    }
+    
+    
     private func setupBindings() {
-        model.$myInteger
-            .sink { [weak self] in
+        model.$myFloat
+            .sink { [weak self] flt in
                 guard let self = self else { return }
-                self.integerChangedInModel($0)
+                self.floatChangedInModel(flt)
+                
             }
             .store(in: &model.listeners)
         
         switchSubscriber = model.$myString.sink{
-            print("Combine yo: \($0)")
+//            print("Combine yo: \($0)")
+//            updateFromModel()
+            self.myStringTextField.text = $0
         }
     }
         
