@@ -16,7 +16,7 @@ class ViewModel: ObservableObject {
     @Published private(set) var privateSetFloat: Float
     @Published private(set) var privateSetString : String
     
-    var listeners: Set<AnyCancellable> = []
+    var subscribers: Set<AnyCancellable> = []
     
     init (myInteger: Float, myString: String) {
         self.myFloat = myInteger

@@ -10,16 +10,11 @@ import SwiftUI
 import Combine
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var myFloatSlider: UISlider!
     @IBOutlet weak var myFloatLabel: UILabel!
-    
     @IBOutlet weak var myTextField: UITextField!
     
-    
     let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +25,6 @@ class ViewController: UIViewController {
     //TODO: get the text editing to update as it's edited
     @IBAction func updateText(_ sender: Any) {
         model.myString = myTextField.text ?? ""
-        print("ONG")
     }
     
     func addSwiftUIView() {
@@ -41,32 +35,18 @@ class ViewController: UIViewController {
         view.addSubview(hostingController.view)
     }
     
-//    func updateFromModel () {
-//        myStringTextField.text = model.myString
-//        myFloatLabel.text = String(model.myFloat)
-//        myFloatSlider.value = model.myFloat
-//    }
-    
-//    func updateToModel () {
-//        model.myString = myStringTextField.text ?? ""
-//        model.myFloat = myFloatSlider.value
-//    }
-    
     @IBAction func sliderChange(_ sender: Any) {
-//        updateToModel()
         model.myFloat = myFloatSlider.value
-//        updateFromModel()
     }
     
-    private var switchSubscriber: AnyCancellable?
     
     private func floatChangedInModel (_ value: Float) {
-        //updateFromModel won't work!!!!
+        print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         myFloatLabel.text = String(value)
         myFloatSlider.value = value
     }
     
-    
+    private var stringSubscriber: AnyCancellable?
     private func setupBindings() {
         model.$myFloat
             .sink { [weak self] flt in
@@ -74,13 +54,10 @@ class ViewController: UIViewController {
                 self.floatChangedInModel(flt)
                 
             }
-            .store(in: &model.listeners)
+            .store(in: &model.subscribers)
         
-        switchSubscriber = model.$myString.sink{
-//            print("Combine yo: \($0)")
-//            updateFromModel()
+        stringSubscriber = model.$myString.sink{
             self.myTextField.text = $0
-//            print($0)
         }
     }
         
