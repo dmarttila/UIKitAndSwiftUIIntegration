@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var myFloatLabel: UILabel!
     @IBOutlet weak var myTextField: UITextField!
     
-    let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
     
+    let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwiftUIView()
@@ -38,10 +38,9 @@ class ViewController: UIViewController {
     @IBAction func sliderChange(_ sender: Any) {
         model.myFloat = myFloatSlider.value
     }
-    
+    //"gotcha --- model: \(model.myFloat) | combine value: \(value)")
     
     private func floatChangedInModel (_ value: Float) {
-        print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         myFloatLabel.text = String(value)
         myFloatSlider.value = value
     }
