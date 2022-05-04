@@ -10,8 +10,6 @@ import SwiftUI
 struct SwiftUIView: View {
     @ObservedObject var model: ViewModel
     
-    @State var myString = ""
-    
     var body: some View {
         ZStack {
             Color.lightYellowGreen
@@ -22,11 +20,6 @@ struct SwiftUIView: View {
                 TextField("", text: $model.myString)
                 Slider(value: $model.myFloat, in: 0...100, step: 1)
                 Text("Float: \(model.myFloat)")
-
-                TextField("Send to model private(set)", text: $myString)
-                    .onChange(of: myString) {
-                        model.updatePrivateString($0)
-                    }
             }
         }
     }
