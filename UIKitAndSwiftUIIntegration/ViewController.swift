@@ -9,16 +9,6 @@ import UIKit
 import SwiftUI
 import Combine
 
-/*
- --  remove unused IBOutlet
- Finish preso
- Start with code commented out in Swift UI and main
- figure out more Combine
- Falcon going inside Imperial Cruiser pic
- R2-D2 turning off the garbage compactor - data binding
- Add Star Wars pics to app
- */
-
 class ViewController: UIViewController {
     @IBOutlet weak var myFloatSlider: UISlider!
     @IBOutlet weak var myFloatLabel: UILabel!
@@ -65,7 +55,7 @@ class ViewController: UIViewController {
     }
     
     private func floatChangedInModel (_ value: Float) {
-        //use the combine value, not the model
+        //use the combine value, not the model, combine is sent on willSet
         print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         myFloatLabel.text = String(value)
         myFloatSlider.value = value
