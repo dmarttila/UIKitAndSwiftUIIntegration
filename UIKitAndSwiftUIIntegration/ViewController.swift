@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var myFloatSlider: UISlider!
     @IBOutlet weak var myFloatLabel: UILabel!
     @IBOutlet weak var myTextField: UITextField!
+    @IBOutlet weak var privateSetLabel: UILabel!
     
     
     let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
@@ -46,6 +47,9 @@ class ViewController: UIViewController {
     }
     
     private var stringSubscriber: AnyCancellable?
+    
+    private var privateSetSubscriber: AnyCancellable?
+    
     private func setupBindings() {
         model.$myFloat
             .sink { [weak self] float in
@@ -58,6 +62,16 @@ class ViewController: UIViewController {
         stringSubscriber = model.$myString.sink{
             self.myTextField.text = $0
         }
+        
+//        privateSetSubscriber = model.$privateSetString.sink{
+//            .assign(to: \.text, on: privateSetLabel)
+//        }
+//        privateSetSubscriber = model.$privateSetString.receive(on: DispatchQueue.main)
+//            .assign(to: \.text, on: self.privateSetLabel)
+        privateSetSubscriber = model.$privateSetString.sink{
+            self.privateSetLabel.text = $0
+        }
+        
     }
         //print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         //https://theswiftdev.com/the-ultimate-combine-framework-tutorial-in-swift/
