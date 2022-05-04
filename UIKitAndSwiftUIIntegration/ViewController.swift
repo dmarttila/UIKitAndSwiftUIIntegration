@@ -65,6 +65,7 @@ class ViewController: UIViewController {
     }
     
     private func floatChangedInModel (_ value: Float) {
+        //use the combine value, not the model
         print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         myFloatLabel.text = String(value)
         myFloatSlider.value = value

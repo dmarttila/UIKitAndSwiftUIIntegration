@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-eS-E9d">
-                                <rect key="frame" x="20" y="74" width="374" height="323.5"/>
+                                <rect key="frame" x="20" y="74" width="374" height="242.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UIKit 😭 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGH-vi-6ZW">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="47"/>
@@ -63,18 +63,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="private(set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgi-dy-m8q">
-                                        <rect key="frame" x="0.0" y="262.5" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWl-uz-G24">
-                                        <rect key="frame" x="0.0" y="303" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -90,7 +78,6 @@
                         <outlet property="myFloatLabel" destination="FmI-Xz-Rtk" id="Mm8-u3-9gh"/>
                         <outlet property="myFloatSlider" destination="EBl-5c-5dR" id="KDa-8k-BbN"/>
                         <outlet property="myTextField" destination="gWG-2h-F65" id="t9G-i2-zZA"/>
-                        <outlet property="privateSetLabel" destination="eWl-uz-G24" id="KmT-N6-3ip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
