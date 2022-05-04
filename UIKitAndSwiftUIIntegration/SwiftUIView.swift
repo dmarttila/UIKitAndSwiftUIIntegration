@@ -12,10 +12,6 @@ struct SwiftUIView: View {
     
     @State var myString = ""
     
-    func updateModel () {
-        
-    }
-    
     var body: some View {
         ZStack {
             Color.lightYellowGreen
@@ -25,18 +21,12 @@ struct SwiftUIView: View {
                     .font(.title)
                 TextField("", text: $model.myString)
                 Slider(value: $model.myFloat, in: 0...100, step: 1)
-                Text("int: \(model.myFloat)")
-//                TextField("", text: $myString)
-//                    .onChange(of: myString) {
-//                        print("it changed")
-//                    }
-                
-                TextField("Your Location", text: $myString)
-                            .onChange(of: myString) {
-                                print($0)
-                                model.updatePrivateString($0)// You can do anything due to the change here.
-                                // self.autocomplete($0) // like this
-                            }
+                Text("Float: \(model.myFloat)")
+
+                TextField("Send to model private(set)", text: $myString)
+                    .onChange(of: myString) {
+                        model.updatePrivateString($0)
+                    }
             }
         }
     }
@@ -45,6 +35,3 @@ struct SwiftUIView: View {
 extension Color {
     static let lightYellowGreen = Color("lightYellowGreen")
 }
-
-
-

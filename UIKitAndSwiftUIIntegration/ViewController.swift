@@ -9,6 +9,16 @@ import UIKit
 import SwiftUI
 import Combine
 
+/*
+ --  remove unused IBOutlet
+ Finish preso
+ Start with code commented out in Swift UI and main
+ figure out more Combine
+ Falcon going inside Imperial Cruiser pic
+ R2-D2 turning off the garbage compactor - data binding
+ Add Star Wars pics to app
+ */
+
 class ViewController: UIViewController {
     @IBOutlet weak var myFloatSlider: UISlider!
     @IBOutlet weak var myFloatLabel: UILabel!
@@ -16,14 +26,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var privateSetLabel: UILabel!
     
     
-    let model = ViewModel(myInteger: 4, myString: "May the 4th be with you")
+    let model = ViewModel(myFloat: 4, myString: "May the 4th be with you")
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwiftUIView()
         setupBindings()
     }
     
-    //TODO: get the text editing to update as it's edited
+    //Button action
     @IBAction func updateText(_ sender: Any) {
         model.myString = myTextField.text ?? ""
     }
@@ -39,41 +49,35 @@ class ViewController: UIViewController {
     @IBAction func sliderChange(_ sender: Any) {
         model.myFloat = myFloatSlider.value
     }
-    //"gotcha --- model: \(model.myFloat) | combine value: \(value)")
     
     private func floatChangedInModel (_ value: Float) {
+        print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
         myFloatLabel.text = String(value)
         myFloatSlider.value = value
     }
     
     private var stringSubscriber: AnyCancellable?
+    private var floatSubscriber: AnyCancellable?
     
     private var privateSetSubscriber: AnyCancellable?
     
     private func setupBindings() {
-        model.$myFloat
-            .sink { [weak self] float in
-                guard let self = self else { return }
-                self.floatChangedInModel(float)
-                
-            }
-            .store(in: &model.subscribers)
-        
-        stringSubscriber = model.$myString.sink{
+        stringSubscriber = model.$myString.sink {
             self.myTextField.text = $0
         }
         
-//        privateSetSubscriber = model.$privateSetString.sink{
-//            .assign(to: \.text, on: privateSetLabel)
-//        }
-//        privateSetSubscriber = model.$privateSetString.receive(on: DispatchQueue.main)
-//            .assign(to: \.text, on: self.privateSetLabel)
+        floatSubscriber = model.$myFloat
+            .sink { [weak self] float in
+                guard let self = self else { return }
+                self.floatChangedInModel(float)
+            }
+
         privateSetSubscriber = model.$privateSetString.sink{
             self.privateSetLabel.text = $0
         }
         
     }
-        //print("gotcha --- model: \(model.myFloat) | combine value: \(value)")
+        //
         //https://theswiftdev.com/the-ultimate-combine-framework-tutorial-in-swift/
         /*
          @IBOutlet weak var textLabel: UILabel!
